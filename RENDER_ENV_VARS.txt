@@ -1,0 +1,34 @@
+# 🚀 Render Environment Variables for SheSafe Backend
+
+Copy and paste these into Render when creating your web service:
+
+```
+PORT=5000
+NODE_ENV=production
+JWT_SECRET=shesafe_super_secret_jwt_key_2024_production_change_this_later
+MONGO_URI=mongodb+srv://tharxxx:YOUR_ACTUAL_PASSWORD@cluster0.azrzll4.mongodb.net/shesafe?retryWrites=true&w=majority
+CLIENT_URL=https://client-ashy-seven-81.vercel.app
+```
+
+## ⚠️ IMPORTANT: Replace in MONGO_URI
+- `YOUR_ACTUAL_PASSWORD` → Your real MongoDB password
+- Keep the rest exactly as shown
+
+## 📋 Render Configuration
+```
+Name: shesafe-backend
+Environment: Node
+Region: Oregon
+Branch: main
+Build Command: cd server && npm install
+Start Command: cd server && node server.js
+Plan: Free
+```
+
+## 🔗 After Deployment
+Once Render gives you the backend URL (like: https://your-app.onrender.com),
+update your Vercel environment variable:
+
+```
+REACT_APP_API_URL=https://your-render-backend-url.onrender.com
+```
