@@ -7,7 +7,7 @@ PORT=5000
 NODE_ENV=production
 JWT_SECRET=shesafe_super_secret_jwt_key_2024_production_change_this_later
 MONGO_URI=mongodb+srv://tharxxx:YOUR_ACTUAL_PASSWORD@cluster0.azrzll4.mongodb.net/shesafe?retryWrites=true&w=majority
-CLIENT_URL=https://client-ashy-seven-81.vercel.app
+CLIENT_URL=https://shesafe-app.vercel.app
 ```
 
 ## ⚠️ IMPORTANT: Replace in MONGO_URI
