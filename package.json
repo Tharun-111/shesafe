@@ -1,0 +1,16 @@
+{
+  "name": "shesafe",
+  "version": "1.0.0",
+  "description": "SheSafe — Women's Safety Companion (MERN Stack)",
+  "scripts": {
+    "install:all": "cd server && npm install && cd ../client && npm install",
+    "seed": "cd server && npm run seed",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm start",
+    "start": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "setup": "npm run install:all && npm run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
