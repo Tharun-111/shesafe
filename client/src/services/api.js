@@ -1,39 +1,44 @@
 import axios from 'axios';
 
-// All API calls are proxied to http://localhost:5000
+// API base URL - uses environment variable or proxy (for local dev)
+const apiBaseURL = process.env.REACT_APP_API_URL || '';
+
+const axiosInstance = axios.create({
+  baseURL: apiBaseURL,
+});
 
 export const api = {
   // Contacts
-  getContacts: () => axios.get('/api/contacts'),
-  addContact: (data) => axios.post('/api/contacts', data),
-  deleteContact: (id) => axios.delete(`/api/contacts/${id}`),
-  getAlertInbox: () => axios.get('/api/contacts/inbox'),
+  getContacts: () => axiosInstance.get('/api/contacts'),
+  addContact: (data) => axiosInstance.post('/api/contacts', data),
+  deleteContact: (id) => axiosInstance.delete(`/api/contacts/${id}`),
+  getAlertInbox: () => axiosInstance.get('/api/contacts/inbox'),
 
   // Trips
-  startTrip: (data) => axios.post('/api/trips/start', data),
-  getTrips: () => axios.get('/api/trips'),
-  getActiveTrip: () => axios.get('/api/trips/active'),
-  markTripSafe: (id) => axios.put(`/api/trips/${id}/safe`),
+  startTrip: (data) => axiosInstance.post('/api/trips/start', data),
+  getTrips: () => axiosInstance.get('/api/trips'),
+  getActiveTrip: () => axiosInstance.get('/api/trips/active'),
+  markTripSafe: (id) => axiosInstance.put(`/api/trips/${id}/safe`),
 
   // Rides
-  logRide: (data) => axios.post('/api/rides', data),
-  getRides: () => axios.get('/api/rides'),
+  logRide: (data) => axiosInstance.post('/api/rides', data),
+  getRides: () => axiosInstance.get('/api/rides'),
 
   // Alerts
-  getAlerts: () => axios.get('/api/alerts'),
-  createAlert: (data) => axios.post('/api/alerts', data),
-  voteAlert: (id) => axios.put(`/api/alerts/${id}/vote`),
-  getSafetyScore: (lat, lng) => axios.get(`/api/alerts/safety-score?lat=${lat}&lng=${lng}`),
+  getAlerts: () => axiosInstance.get('/api/alerts'),
+  createAlert: (data) => axiosInstance.post('/api/alerts', data),
+  voteAlert: (id) => axiosInstance.put(`/api/alerts/${id}/vote`),
+  getSafetyScore: (lat, lng) => axiosInstance.get(`/api/alerts/safety-score?lat=${lat}&lng=${lng}`),
 
   // Buddy
-  createBuddyRequest: (data) => axios.post('/api/buddy/request', data),
-  getMyBuddyRequests: () => axios.get('/api/buddy/my'),
-  getOpenBuddyRequests: () => axios.get('/api/buddy/open'),
+  createBuddyRequest: (data) => axiosInstance.post('/api/buddy/request', data),
+  getMyBuddyRequests: () => axiosInstance.get('/api/buddy/my'),
+  getOpenBuddyRequests: () => axiosInstance.get('/api/buddy/open'),
 
   // Messages
-  getMessages: (roomId) => axios.get(`/api/messages/${roomId}`),
+  getMessages: (roomId) => axiosInstance.get(`/api/messages/${roomId}`),
 
   // SOS tracking (public)
-  getSOSByTracking: (trackingId) => axios.get(`/api/sos/track/${trackingId}`),
-  getSOSHistory: () => axios.get('/api/sos/history'),
+  getSOSByTracking: (trackingId) => axiosInstance.get(`/api/sos/track/${trackingId}`),
+  getSOSHistory: () => axiosInstance.get('/api/sos/history'),
 };
